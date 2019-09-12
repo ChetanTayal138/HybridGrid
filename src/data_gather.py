@@ -1,46 +1,32 @@
-from bs4 import BeautifulSoup
-import requests
-from selenium import webdriver  
-from requests_html import HTMLSession
+from soup_functions import * 
 
 
 UP_URL = "http://www.upsldc.org/real-time-data"
 
 
-#Basic operation for obtaining a soup object
-def get_soup(URL):
-    res = requests.get(URL)
-    soup = BeautifulSoup(res.text , "html.parser")
-    return soup
 
+def get_soup(URL , js = True):
 
-#Selenium Render for handling JavaScript
-def html_render(URL):
-    options = webdriver.ChromeOptions()
-    options.add_argument('headless')
-    driver = webdriver.Chrome(chrome_options = options)
-    driver.get(URL)
-    html = driver.page_source
-    soup = BeautifulSoup(html , "html.parser")
-    return soup 
-
-
-#Only render currently working for obtaining the data from UP SLDC
-def html_r_render(URL): 
-    session = HTMLSession()
-    res = session.get(URL)
-    res.html.render()
-    soup = BeautifulSoup(res.html.html , 'html.parser')
-    return soup 
-
-def get_data(URL , js = False):
     if js == False:
-        soupob = get_soup(URL)
-    soupob = html_render(URL)
+        return get_soup(URL)
+    return html_render(URL)
+
+
+
+
+
+
+
+def get_summary_data(URL):
+
+
+    soupob = get_soup(URL)
 
     tables = soupob.findAll("tbody")
     
 
+
+    ############ SUMMARY DATA ############
 
 
     table_1 = tables[0]
@@ -84,6 +70,7 @@ def get_data(URL , js = False):
 
 
 
+        ############## DATA FOR NPCL ####################
 
     NPCL = tables[-1]
     NPCL_sched  = NPCL.find("td" , {"class" : "npcl_sg"})
@@ -98,6 +85,46 @@ def get_data(URL , js = False):
                 }
 
 
+
+   ###################################################
+
+
+    return [dict_1 , dict_2 , dict_3 , dict_NPCL]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+######## FUNCTION FOR OBTAINING THE GENERATOR DATA FROM DIFFERENT CATEGORIES ###################
+
+def get_generator_data(soupob):
+    
+
+    ############### DATA FOR UPRVUNL ##################
+
     dict_UPRVUNL = {}
 
     UPRVUNL = soupob.find("tbody" , {"class" , "td-header_1"} )
@@ -110,16 +137,53 @@ def get_data(URL , js = False):
         gen_sched  = values[2].text
         gen_actual = values[3].text
         gen_oi_ui  = values[4].text
-        dict_UPRVUNL[f'{gen_name}'] = [gen_dc , gen_sched , gen_actual , gen_oi_ui]
+        dict_UPRVUNL[f'{gen_name}'] = list(map(float,[gen_dc , gen_sched , gen_actual , gen_oi_ui]))    
 
-    
-    print(dict_UPRVUNL) 
-    
+    ####################################################
 
+
+
+
+    ############## DATA FOR UPJVNL ###########
+
+    dict_UPJVNL = {}
+
+    UPJVNL = soupob.find("tbody" , {"class" : "td-header_2"})
+    UPJVNL_rows = UPJVNL.findAll("tr")
+    shown_rows = UPJVNL.findAll("tr" , {"class" : "clTot"})
+    for i in shown_rows:
+        values = i.findAll("td")
+        gen_name   = values[0].text
+        gen_dc     = values[1].text
+        gen_sched  = values[2].text
+        gen_actual = values[3].text
+        gen_oi_ui  = values[4].text
+        dict_UPJVNL[f'{gen_name}'] = list(map(float, [gen_dc , gen_sched , gen_actual , gen_oi_ui]))
+
+    #################################################
+
+
+    ################ DATA FOR IPP #######################
+
+    dict_IPP = {}
+
+    IPP = soupob.find("tbody" , {"class" : "td-header_3"})
+    IPP_rows = IPP.findAll("tr")
+    shown_rows = IPP.findAll("tr" , {"class" : "clTot"})
+    for i in shown_rows:
+        values = i.findAll("td")
+        gen_name   = values[0].text
+        gen_dc     = values[1].text
+        gen_sched  = values[2].text
+        gen_actual = values[3].text
+        gen_oi_ui  = values[4].text
+        dict_IPP[f'{gen_name}'] = list(map(float, [gen_dc , gen_sched , gen_actual , gen_oi_ui]))
+
+  
     print("SUCCESS!")
-    return [dict_1,dict_2,dict_3]
+    return [dict_UPRVUNL, dict_UPJVNL, dict_IPP]
 
  
 if __name__ == "__main__":
-    get_data(UP_URL , js = True)
+    print(get_generator_data(get_soup(UP_URL)))
     

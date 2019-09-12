@@ -29,18 +29,6 @@ def insertPosts(in_posts,dbname):
     post_id = posts.insert_many(in_posts).inserted_ids #Inserting a list of dictionaries
     return DB , post_id
 
-def view_database(dbname):
-    db = get_database(f'{dbname}')
-    posts = db.posts 
-    for post in posts:
-        print(post)
-
-
-def del_database(dbname):
-
-    client = init_client()
-    client.drop_database(f'{dbname}')
-    return client 
 
 
 def init_env(dbname1, dbname2):
