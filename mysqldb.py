@@ -19,9 +19,8 @@ def get_query(filename):
 
     return queries
 
-def sql_main(new_data):
+def sql_main(new_data, HOST, DATABASE, USER, PASSWORD):
 
-    rs = []
 
     try:
             connection = mysql.connector.connect(host = HOST,database = DATABASE,user = USER,password = PASSWORD)
@@ -39,10 +38,12 @@ def sql_main(new_data):
                 else:
                     query = query.replace("\n",  "")
                     cursor.execute(query)
-                    rs.append(cursor.fetchall())
+                    rs = (cursor.fetchall())
 
             connection.commit()
             cursor.close()
+
+            return rs 
                 
 
     except Error as e:
@@ -50,17 +51,19 @@ def sql_main(new_data):
         return False
 
 
-    return True
-
 
 
 if __name__ == '__main__':
         
-
+        #print(get_generator_data(UP_URL))
         dict_UPRVUNL, dict_UPJVNL, dict_IPP = get_generator_data(UP_URL)
+        # print(dict_UPRVUNL)
+        # print(dict_UPJVNL)
+        # print(dict_IPP)
         res = extract_result_set(dict_UPRVUNL, dict_UPJVNL, dict_IPP)
-        if((sql_main(res))):
-            print("SUCCESSFULLY UPDATED DATABASE")
+        rs = sql_main(res, HOST, DATABASE, USER, PASSWORD)
+        print(rs)
+        print("SUCCESSFULLY UPDATED DATABASE")
 
 
 

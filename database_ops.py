@@ -1,5 +1,6 @@
 from pymongo import MongoClient 
 from collection_ops import view_collections , add_collection , get_collection 
+from extractor import create_generators 
 
 
 UP_URL = "http://www.upsldc.org/real-time-data"
@@ -38,6 +39,8 @@ def insert_document(db,col_name,doc_dict):
     col = get_collection(db,col_name)
     return col.insert_one(doc_dict)
 
+
+#doc_dicts is a list of dictionary
 def insert_documents(db,col_name,doc_dicts):  
     col = get_collection(db,col_name)
     return col.insert_many(doc_dicts)
@@ -46,6 +49,7 @@ def view_documents(db, col_name):
     col = get_collection(db,col_name)
     for document in col.find():
         print(document)
+    
 
 def get_documents(db , col_name):
     docs = [] 
@@ -65,37 +69,4 @@ def delete_all_documents(db, col_name):
 
 
 if __name__ == "__main__":
-
-    ## CREATING DATABASES 
-    databases = ['Uttar-Pradesh']
-
-    #print(create_databases(databases))
-
-    # OBTAINING THE DATABASES 
-    db = get_database(databases[0])
-
-
-    ##POPULATING THE DATABASE WITH SOME INITIAL CONTENT 
-
-
-
-    ## VIEWING CURRENTLY EXISTING DATABASES
-    # print(list_databases())
-
-    ## VIEWING THE COLLECTIONS INSIDE THE DATABASE 
-
-    print(view_collections(db))
-
-    # VIEWING THE DOCUMENTS WITHING THE COLLECTIONS 
-
-    view_documents(db,'UPJVNL')
-    view_documents(db,'UPRVUNL')
-    view_documents(db, 'IPP')
-
-
-
-    
-    
-#Create 2 Databases for Uttar Pradesh - Summary DataBases and Real Time Database
-#Create Seperate Collections for Each Region 
-#In each Collection, create a document for each region
+    print(list_databases())

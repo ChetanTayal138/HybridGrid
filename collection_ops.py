@@ -6,7 +6,7 @@ UP_URL = "http://www.upsldc.org/real-time-data"
 
 
 def view_collections(db):
-	return f"{db.list_collection_names()}"
+	return db.list_collection_names()
 
 def get_collection(db,col_name):
 	return db[f'{col_name}']

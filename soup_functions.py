@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 import requests
 from requests_html import HTMLSession
+from selenium import webdriver
 
 UP_URL = "http://www.upsldc.org/real-time-data"
 

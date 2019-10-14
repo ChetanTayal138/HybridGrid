@@ -1,5 +1,5 @@
 from data_storage import *
-import 
+
 
 class generator : 
 
@@ -33,6 +33,7 @@ class generator :
 
 
 	def send_data(self):
+		pass
 
 
 

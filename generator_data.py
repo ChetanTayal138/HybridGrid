@@ -1,15 +1,49 @@
-from soup_functions import html_r_render , get_soup
+from soup_functions import html_r_render , get_soup , html_render
 
 UP_URL = "http://www.upsldc.org/real-time-data"
 
+def get_generator_names():
+    UPRVUNL_names = [
+    'ANPARA-A',
+    'ANPARA-B',
+    'ANPARA-D',
+    'HRDGNJ',
+    'HRDGNJ D',
+    'OBRA-B',
+    'PRCH-A',
+    'PRCH-B',
+    'PRCH-C']
+    
+    UPJVNL_names = [
+    'KHARA',
+    'OBRA-H',
+    'RIHAND'] 
 
+    IPP_names = [
+    'ALAKNANDA',
+    'BARA', 
+    'BEPL-BERK',
+    'BEPL-KHAM',
+    'BEPL-KUN',
+    'BEPL-UTRL',
+    'BEPL_MAQ',
+    'LANCO',
+    'LPGCL',
+    'MEJA',
+    'ROSA-I',
+    'ROSA-II',
+    'TANDA',
+    'VPRG'
+    ]
+
+    return (UPRVUNL_names , UPJVNL_names , IPP_names)
 
 ######## FUNCTION FOR OBTAINING THE GENERATOR DATA FROM DIFFERENT CATEGORIES ###################
 
 def get_generator_data(URL):
 
-
-    soupob = html_r_render(URL)
+    soupob = html_render(URL)
+    
     #soupob = obtain_soup(URL,js = True)
     dict_UPRVUNL = {}
     
@@ -17,7 +51,7 @@ def get_generator_data(URL):
 
 
     UPRVUNL = soupob.find("tbody" , {"class" : "td-header_1"} )
-    UPRVUNL_rows = UPRVUNL.findAll("tr")  
+    UPRVUNL_rows = UPRVUNL.findAll("tr") 
     shown_rows = UPRVUNL.findAll("tr" , {"class" : "clTot"})
     for i in shown_rows:
         values = i.findAll("td")
@@ -69,7 +103,7 @@ def get_generator_data(URL):
         dict_IPP[f'{gen_name}'] = list(map(float, [gen_dc , gen_sched , gen_actual , gen_oi_ui]))
 
   
-    
+
     return [dict_UPRVUNL, dict_UPJVNL, dict_IPP]
 
 
@@ -78,5 +112,15 @@ def get_generator_data(URL):
 
 
 if __name__ == "__main__":
-    print(get_generator_data(UP_URL))
+    a,b,c = get_generator_data(UP_URL)
+    print("A")
+    print(a)
+    print(type(a))
+    print("B")
+    print(b)
+    print(type(b))
+    print("C")
+    print(c)
+    print(type(c))
     
+
