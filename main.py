@@ -5,12 +5,12 @@ from extractor import extract_result_set
 from mysqldb import sql_main
 from data_inserter import insert_values , update_mongodb_values
 from collection_ops import view_collections 
-
+from required import required_main
 
 HOST = 'localhost'
 DATABASE = 'uttar_pradesh'
 USER = 'root'
-PASSWORD = '********'
+PASSWORD = ''
 UP_URL = "http://www.upsldc.org/real-time-data"
 
 
@@ -104,7 +104,7 @@ def main():
 
 if __name__ == "__main__":
     main()
-
+    required_main()
 
 
 

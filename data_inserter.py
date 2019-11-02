@@ -1,14 +1,6 @@
 from database_ops import insert_documents, insert_document, view_documents, get_database 
 from collection_ops import get_collection 
 
-
-
-"""
-    
-
-"""
-
-
 def insert_values(db, col_name, g_name, new_values):
 
     col = get_collection(db, col_name)
