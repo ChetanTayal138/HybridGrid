@@ -1,6 +1,42 @@
 {% extends "layout.html" %}
 {% block content %}
     
-        <h1>Admin Page</h1>
+        <h1>Admin Page </h1>
+        <br>
+        <h2>Welcome {{aname}} </h2>
+        <br>
+
+<table border="1" cellpadding="5" cellspacing="5">
+    <thead>
+    <tr>
+        <th>GEN_NAME</th>
+        <th>GEN_ID</th>
+        <th>CAT_ID</th>
+        <th>DC</th>
+        <th>SCHEDULE</th>
+        <th>ACTUAL</th>
+        <th>OU_UI</th>
+        <th>SP_ID</th>
+        <th>PROVIDED</th>
+        
+    </tr>
+    </thead>
+    <tbody>
+        {% for row in data %} 
+            <tr>
+                <td>{{row[0]}}</td>
+                <td>{{row[1]}}</td>
+                <td>{{row[2]}}</td>
+                <td>{{row[3]}}</td>
+                <td>{{row[4]}}</td>
+                <td>{{row[5]}}</td>
+                <td>{{row[6]}}</td>
+                <td>{{row[7]}}</td>
+                <td>{{row[8]}}</td>
+                
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
     
 {% endblock content %}
