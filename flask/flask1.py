@@ -51,6 +51,11 @@ def login():
         cursor.execute("SELECT password FROM logincheck WHERE email_id =%s",(a_email,))
         pwdcheck=cursor.fetchone()
         print(pwdcheck[0])
+        
+        cursor.execute("SELECT a_id from logincheck WHERE email_id=%s",(a_email,))
+        x=cursor.fetchone()
+        aid=x[0]
+        print(aid)
 
 
        # out = [item for t in pwdcheck for item in t] 
@@ -70,15 +75,18 @@ def login():
 
         if pwdcheck[0] == a_pwd :
             flash('You have been logged in!', 'success')
-            return redirect(url_for('admin'))
+            return redirect(url_for('admin'),aid=aid)
         else:
             flash('Login Unsuccessful. Please check username and password', 'danger')
     return render_template('login.html', title='Login', form=form)
 
 
-@app.route("/admin")
-def admin():
-    return render_template('admin.html',title='Admin')
+@app.route("/admin/<int:aid>")
+def admin(aid):
+    cursor.execute("SELECT * FROM generators WHERE a_id=aid")
+    data=cursor.fetchall()
+    print(data)
+    return render_template('admin.html',title='Admin',data=data)
 
 if __name__ == '__main__':
     app.run(debug=True)
