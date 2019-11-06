@@ -81,12 +81,23 @@ def login():
     return render_template('login.html', title='Login', form=form)
 
 
-@app.route("/admin/<int:aid>")
+@app.route("/admin/<aid>")
 def admin(aid):
-    cursor.execute("SELECT * FROM generators WHERE a_id=aid")
+    connection = mysql.connector.connect( host="localhost",
+    user="root",  
+    passwd="7338330380",
+    database="uttar_pradesh")
+    cursor = connection.cursor(buffered = True)  
+    print(aid)
+    cursor.execute("SELECT a_name from administrators WHERE a_id=%s",(aid,))
+    y=cursor.fetchone()
+    aname=y[0]
+    print(aname)
+    cursor.execute("SELECT * FROM generators WHERE a_id=%s",(aid,))
     data=cursor.fetchall()
     print(data)
-    return render_template('admin.html',title='Admin',data=data)
 
-if __name__ == '__main__':
+    return render_template('admin.html',title='Admin',data=data,aid=aid,aname=aname)
+
+if __name__ == '__main__':  
     app.run(debug=True)
