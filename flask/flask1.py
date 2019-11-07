@@ -26,22 +26,22 @@ def home():
 def about():
     return render_template('about.html', title='About')
 
-@app.route("/solar",methods=['GET','POST'])
+@app.route("/solar" ,methods=['GET','POST'])
 def solar():
-    connection = mysql.connector.connect( host="localhost",
+    connection = mysql.connector.connect(host="localhost",
     user="root",  
     passwd="7338330380",
     database="uttar_pradesh")
     cursor = connection.cursor(buffered = True)
 
     cursor.execute("SELECT * FROM solar_farm")
-    a=cursor.fetchall
-    print(a)
+    farm=cursor.fetchall()
+    print(farm)
 
     cursor.execute("SELECT * FROM solar_provider")
-    b=cursor.fetchall
+    prov=cursor.fetchall()
 
-    return render_template('solar.html', title='Our Solar Energy',farm=a,prov=b)
+    return render_template('solar.html', title='Our Solar Energy', farm=farm , prov=prov)
 
 @app.route("/login", methods=['GET','POST'])
 def login():

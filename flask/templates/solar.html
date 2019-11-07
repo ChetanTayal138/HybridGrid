@@ -5,32 +5,6 @@
         <br>
         
 
-<!-- <main role="main" class="container" >
-     <div class="row" >
-        <div class="col-md-10 col-md-offset-10"  >
-          {% block content1 %}{% endblock %}
-        </div>
-        <div class="col-md-5 col-md-offset-10" >
-          <div class="content-section">
-            <h3>Admin Details</h3>
-            <p class='text-muted'>
-              <ul class="list-group">
-                <li class="list-group-item list-group-item-light">Name : {{aname}} </li>
-                <li class="list-group-item list-group-item-light">Start Year : {{start}}</li>
-                <li class="list-group-item list-group-item-light">Number of Generators : {{num}}</li>
-                
-              </ul>
-            </p>
-          </div>
-        </div>
-      </div>
-    </main>
-
-  -->
-
-
-
-
 <div style="float:left; width:69%">
     <h1> SOLAR FARMS </h1>
 <table border="1" cellpadding="5" cellspacing="5">
@@ -45,13 +19,44 @@
     </tr>
     </thead>
     <tbody>
-        {% for row in data %} 
+        {% for row in farm %} 
             <tr>
-                <td>{{farm[1]}}</td>
-                <td>{{farm[2]}}</td>
-                <td>{{farm[3]}}</td>
-                <td>{{farm[4]}}</td>
+                <td>{{row[1]}}</td>
+                <td>{{row[2]}}</td>
+                <td>{{row[3]}}</td>
+                <td>{{row[4]}}</td>
                
+                
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<br>
+
+</div>
+
+<div style="float:left; width:69%">
+    <h1> SOLAR PROVIDERS </h1>
+<table border="1" cellpadding="5" cellspacing="5">
+    <thead>
+    <tr>
+        <th>SOLAR PROVIDER NAME</th>
+        <th>LOCATION</th>
+        <th>CAPACITY</th>
+        <th>CURRENT</th>
+        <th>NUMBER OF GENERATORS</th>
+        
+        
+    </tr>
+    </thead>
+    <tbody>
+        {% for row in prov %} 
+            <tr>
+                <td>{{row[2]}}</td>
+                <td>{{row[3]}}</td>
+                <td>{{row[4]}}</td>
+                <td>{{row[5]}}</td>
+                <td>{{row[6]}}</td>
                 
             </tr>
         {% endfor %}
