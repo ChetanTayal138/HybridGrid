@@ -6,6 +6,30 @@
         <h2>Welcome {{aname}} </h2>
         <br>
 
+ <main role="main" class="container">
+      <div class="row" >
+        <div class="col-md-10 col-md-offset-10" style="width: 69% ; float: 'right';" >
+          {% block content1 %}{% endblock %}
+        </div>
+        <div class="col-md-5 col-md-offset-10" >
+          <div class="content-section">
+            <h3>Admin Details</h3>
+            <p class='text-muted'>
+              <ul class="list-group">
+                <li class="list-group-item list-group-item-light">Name : {{aname}} </li>
+                <li class="list-group-item list-group-item-light">Start Year : {{start}}</li>
+                <li class="list-group-item list-group-item-light">Number of Generators : {{num}}</li>
+                
+              </ul>
+            </p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+   
+
+
 <table border="1" cellpadding="5" cellspacing="5">
     <thead>
     <tr>
@@ -38,5 +62,14 @@
         {% endfor %}
     </tbody>
 </table>
+
+<a href="" class="btn btn-primary>Refresh</a>
+<br>
+<br>
+<form method="POST" ,action=" ">
+   <p><button style="border-radius:5px;" type="submit" class="btn btn-success" >Refresh </button></p>
+</form>
     
+
 {% endblock content %}
+ 
