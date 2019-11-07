@@ -26,9 +26,24 @@ def home():
 def about():
     return render_template('about.html', title='About')
 
+@app.route("/solar",methods=['GET','POST'])
+def solar():
+    connection = mysql.connector.connect( host="localhost",
+    user="root",  
+    passwd="7338330380",
+    database="uttar_pradesh")
+    cursor = connection.cursor(buffered = True)
+
+    cursor.execute("SELECT * FROM solar_farm")
+    a=cursor.fetchall
+    print(a)
+
+    cursor.execute("SELECT * FROM solar_provider")
+    b=cursor.fetchall
+
+    return render_template('solar.html', title='Our Solar Energy',farm=a,prov=b)
+
 @app.route("/login", methods=['GET','POST'])
-
-
 def login():
     form = LoginForm()
     if form.validate_on_submit():

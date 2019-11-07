@@ -28,6 +28,7 @@
             <div class="navbar-nav mr-auto">
               <a class="nav-item nav-link" href="{{ url_for('home') }}">Home</a>
               <a class="nav-item nav-link" href="{{ url_for('about') }}">About</a>
+              <a class="nav-item nav-link" href="{{ url_for('solar') }}">Our Solar Energy</a>
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
@@ -50,8 +51,11 @@
               {% endfor %}
             {% endif %}
           {% endwith %}
-          {% block content %}{% endblock %}
-        </div>
+          </div>
+          <div style="width:100%">
+          {% block content %}
+          </div>{% endblock %}
+        
         
       </div>
     </main>

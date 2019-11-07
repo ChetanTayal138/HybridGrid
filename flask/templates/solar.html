@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+{% block content %}
+    
+        <h1>Solar Farms and Providers </h1>
+        <br>
+        
+
+<!-- <main role="main" class="container" >
+     <div class="row" >
+        <div class="col-md-10 col-md-offset-10"  >
+          {% block content1 %}{% endblock %}
+        </div>
+        <div class="col-md-5 col-md-offset-10" >
+          <div class="content-section">
+            <h3>Admin Details</h3>
+            <p class='text-muted'>
+              <ul class="list-group">
+                <li class="list-group-item list-group-item-light">Name : {{aname}} </li>
+                <li class="list-group-item list-group-item-light">Start Year : {{start}}</li>
+                <li class="list-group-item list-group-item-light">Number of Generators : {{num}}</li>
+                
+              </ul>
+            </p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+  -->
+
+
+
+
+<div style="float:left; width:69%">
+    <h1> SOLAR FARMS </h1>
+<table border="1" cellpadding="5" cellspacing="5">
+    <thead>
+    <tr>
+        <th>FARM NAME</th>
+        <th>FARM LOCATION</th>
+        <th>ENERGY PRODUCED</th>
+        <th>NUMBER OF PANELS INSTALLED</th>
+        
+        
+    </tr>
+    </thead>
+    <tbody>
+        {% for row in data %} 
+            <tr>
+                <td>{{farm[1]}}</td>
+                <td>{{farm[2]}}</td>
+                <td>{{farm[3]}}</td>
+                <td>{{farm[4]}}</td>
+               
+                
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<br>
+
+</div>
+
+
+
+{% endblock content %}
