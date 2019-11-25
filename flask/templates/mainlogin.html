@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block content %}
+    
+        <div class="content-section">
+        	<legend class="border-bottom mb-4">Log In</legend>
+        	<a class="nav-item nav-link" href="{{ url_for('login') }}">Are you an Admin? Log in here.</a>
+            <a class="nav-item nav-link" href="{{ url_for('hlogin') }}">Are you the IT head? Log in here.</a>
+            
+        </div>
+    
+{% endblock content %}

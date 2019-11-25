@@ -1,16 +1,19 @@
-{% extends "layout_html.html" %}
+{% extends "layout.html" %}
 {% block content %}
     
-        
+        <h1>Admin Page </h1>
         <br>
-        <h2>Welcome {{aname}}</h2>
+        <h2>Welcome {{aname}} </h2>
         <br>
 
-
-
-<div style="float: right;width: 59%;left:20rem">
-    {% block content2 %}{% endblock %}
-     <h3>Admin Details</h3>
+<!-- <main role="main" class="container" >
+     <div class="row" >
+        <div class="col-md-10 col-md-offset-10"  >
+          {% block content1 %}{% endblock %}
+        </div>
+        <div class="col-md-5 col-md-offset-10" >
+          <div class="content-section">
+            <h3>Admin Details</h3>
             <p class='text-muted'>
               <ul class="list-group">
                 <li class="list-group-item list-group-item-light">Name : {{aname}} </li>
@@ -19,43 +22,76 @@
                 
               </ul>
             </p>
-</div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+  -->
 
 
-<div style="float:right; width:60%">
+
+
+<div style="float:left; width:69%">
 <table border="1" cellpadding="5" cellspacing="5">
     <thead>
-    <h3 style="float:center; width: 90%">Admin Generators</h3>
     <tr>
-        <th>GENERATOR</th>
-        <th>DC (MW)</th>
-        <th>SCHEDULE (MW)</th>
-        <th>ACTUAL (MW)</th>
-        <th>OI_UI (MW)</th>  
-        <th>PROVIDED (MW)</th>
+        <th>GENERATOR NAME</th>
+        <th>ID</th>
+        <th>DC</th>
+        <th>SCHEDULE</th>
+        <th>ACTUAL</th>
+        <th>OU_UI</th>
+        <th>PROVIDER ID</th>
+        <th>PROVIDED</th>
         
     </tr>
     </thead>
     <tbody>
         {% for row in data %} 
             <tr>
-                <td><a href="{{ url_for('get_plot' , gen_name = row[0] , aid = row[9])}}">{{row[0]}}</td>
+                <td>{{row[0]}}</td>
+                <td>{{row[1]}}</td>
                 <td>{{row[3]}}</td>
                 <td>{{row[4]}}</td>
                 <td>{{row[5]}}</td>
                 <td>{{row[6]}}</td>
+                <td>{{row[7]}}</td>
                 <td>{{row[8]}}</td>
                 
             </tr>
         {% endfor %}
     </tbody>
 </table>
-
 <br>
+<a href="" class="btn btn-primary">Refresh</a> <a href="{{ url_for('login') }}" class="btn btn-primary">Log Out</a>
+<br>
+<br>
+
+<!--
 <form method="POST" ,action=" ">
-   <p><button style="border-radius:5px;" type="submit" class="btn btn-success" >Redirect </button></p>
+   <p><button style="border-radius:5px;" type="submit" class="btn btn-success" >Refresh </button></p>
 </form>
+-->
     
+</a>
+</div>
+
+<div style="float: right;width: 29%;left:30rem">
+	{% block content2 %}{% endblock %}
+	 <h3>Admin Details</h3>
+            <p class='text-muted'>
+              <ul class="list-group">
+                <li class="list-group-item list-group-item-light">Name : {{aname}} </li>
+                <li class="list-group-item list-group-item-light">Start Year : {{start}}</li>
+                <li class="list-group-item list-group-item-light">Number of Years of Service : {{2019-start}}</li>
+                <li class="list-group-item list-group-item-light">Number of Generators : {{num}}</li>
+                <a href="{{ url_for('change',aid=aid) }}" class="btn btn-primary">Change your password?</a>
+              </ul>
+            </p>
+</div>
+
+
 
 {% endblock content %}
  
