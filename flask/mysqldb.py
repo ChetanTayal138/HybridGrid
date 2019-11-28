@@ -6,8 +6,8 @@ from generator_data import get_generator_data
 UP_URL = "http://www.upsldc.org/real-time-data"
 HOST = 'localhost'
 DATABASE = 'uttar_pradesh'
-USER = 'rhino'
-PASSWORD = 'iamaboy3801'
+USER = ''
+PASSWORD = ''
 UP_URL = "http://www.upsldc.org/real-time-data"
 
 
