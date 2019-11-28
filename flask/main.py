@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+
+
 from database_ops import get_database
 from extractor import create_generators, get_generator_data
 from database_ops import delete_all_documents , insert_document , view_documents, insert_documents
@@ -9,8 +12,8 @@ from required import required_main
 
 HOST = 'localhost'
 DATABASE = 'uttar_pradesh'
-USER = 'root'
-PASSWORD = '7338330380'
+USER = 'rhino'
+PASSWORD = 'iamaboy3801'
 UP_URL = "http://www.upsldc.org/real-time-data"
 
 

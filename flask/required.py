@@ -5,8 +5,8 @@ from distribution import distribution_main
 
 HOST = 'localhost'
 DATABASE = 'uttar_pradesh'
-USER = 'root'
-PASSWORD = '7338330380'
+USER = 'rhino'
+PASSWORD = 'iamaboy3801'
 UP_URL = "http://www.upsldc.org/real-time-data"
 
 def calculate_difference(HOST , DATABASE , USER , PASSWORD):
@@ -21,9 +21,8 @@ def calculate_difference(HOST , DATABASE , USER , PASSWORD):
             diff_rs = (cursor.fetchall())
             return diff_rs
     except Error as e:
-        print(e)
-        print("LOL")
-
+        pass
+        
 
 
 
@@ -81,7 +80,7 @@ def calculate_required(gen_dicts):
 
 def create_resultset(gen_dicts):
     resultset = []
-    print(gen_dicts)
+    
 
     for i in gen_dicts:
         for j in range(len(gen_dicts[i][1])):
@@ -93,12 +92,12 @@ def create_resultset(gen_dicts):
 def required_main():
     
     rs = calculate_difference(HOST , DATABASE , USER , PASSWORD)
-    
     gen_dict = generate_dictionary(rs)
     summ = calculate_sum(gen_dict)
     gen_dict = calculate_proportions(summ, gen_dict)
     gen_dict =  calculate_required(gen_dict)
     i = create_resultset(gen_dict)
+    
     try:
         connection = mysql.connector.connect(host = HOST, database = DATABASE , user = USER , password = PASSWORD)
         cursor = connection.cursor(buffered = True)

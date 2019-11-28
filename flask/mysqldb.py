@@ -3,6 +3,13 @@ from mysql.connector import Error
 from extractor import extract_result_set 
 from generator_data import get_generator_data
 
+UP_URL = "http://www.upsldc.org/real-time-data"
+HOST = 'localhost'
+DATABASE = 'uttar_pradesh'
+USER = 'rhino'
+PASSWORD = 'iamaboy3801'
+UP_URL = "http://www.upsldc.org/real-time-data"
+
 
 def get_query(filename):
 
@@ -18,8 +25,8 @@ def get_query(filename):
 def sql_main(new_data, HOST, DATABASE, USER, PASSWORD):
 
     try:
-        #connection = mysql.connector.connect(host = HOST,database = DATABASE,user = USER,password = PASSWORD)
-        #cursor = connection.cursor(buffered = True)
+        connection = mysql.connector.connect(host = HOST,database = DATABASE,user = USER,password = PASSWORD)
+        cursor = connection.cursor(buffered = True)
         queries = get_query("queries.txt")
     
         for query in queries:
@@ -55,6 +62,7 @@ if __name__ == '__main__':
         dict_UPRVUNL, dict_UPJVNL, dict_IPP = get_generator_data(UP_URL)
         res = extract_result_set(dict_UPRVUNL, dict_UPJVNL, dict_IPP)
         rs = sql_main(res, HOST, DATABASE, USER, PASSWORD)
+
         
 
 

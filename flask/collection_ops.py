@@ -28,14 +28,12 @@ if __name__ == '__main__':
 
 
 	### INITIALISING THE COLLECTIONS ###
-	# collections = ['UPRVUNL', 'UPJVNL', 'IPP']
-	# cols = []
+	collections = ['UPRVUNL', 'UPJVNL', 'IPP']
+	cols = []
 
 	### ADDING THE COLLECTIONS TO THE NEEDED DATABASE ###
 
-	# for collection in collections:
-	# 	cols.append(add_collection(db, collection))
+	for collection in collections:
+            cols.append(add_collection(db, collection))
 
-	# print(cols)
-
-	print(view_collections(db))
+    

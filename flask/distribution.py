@@ -5,14 +5,12 @@ from mysqldb import get_query
 
 HOST = 'localhost'
 DATABASE = 'uttar_pradesh'
-USER = 'root'
-PASSWORD = '7338330380'
+USER = 'rhino'
+PASSWORD = 'iamaboy3801'
 UP_URL = "http://www.upsldc.org/real-time-data"
 
 def distribution_main():
     rs1 = None 
-
-
     try:
         connection = mysql.connector.connect(host = HOST, database = DATABASE , user = USER , password = PASSWORD)
         cursor = connection.cursor(buffered = True)

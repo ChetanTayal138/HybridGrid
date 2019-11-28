@@ -1,58 +1,97 @@
+ 
 {% extends "layout.html" %}
 {% block content %}
-    
-        <h1>Home Page</h1>
- <br>
- 
-<div style="float:left; width:69%">
+       
+        <body>
+        	<img src = "/static/header_bg.jpg" alt = "LOL" width = "1200" height="200">
+        	<br>
+        	<br>
+        	<br>
+        	<br>
+     		<h1 align="center">Hybrid Electricity Supply Grid</h1>
+     		<br>
+        	<br>
+        	<br>
+        	<br>
+        	<h2 align="left">How We Work?</h2>
+        	<div class="container-fluid" style="width: 30%%;background-color: #cce6ff; ">
+        	<p align="justify">Electricity demand in India today exceeds what can be supplied by already existing electricity grids which make use of Conventional sources such as coal, thermal, etc in order to generate electricity and provide to our homes. What we aim to achieve is to allow State Dispatch Load Centers to cover up the difference that exists between supply and demand of electricity in the generators by combining solar electricity from solar distributors located across the states which obtain Solar Energy from various Solar Farms in the Uttar Pradesh. Our Ultimate Goal is to build this software for all possible states in India under one controlling body in order to regulate and oversee this distribution of Solar Energy on a national scale.
+        </p>   
+        	<img src = "/static/minigrids-technicaldesign-components-hybrid.jpg" alt = "LOL" width = "1100" height="250">
+        	<br>
+        	<br>
+        	<br>
+       		</div>
+        	<br>
+        	<br>
+        	<br>
+        	<br>
+        
+
+
+		<div style="float:left; width:69%">
 	<h4> Generator consumption of Solar Energy Real Time </h4>
 <table border="1" cellpadding="5" cellspacing="5">
     <thead>
     <tr>
     	<th></th>
         <th>GENERATOR NAME</th>
-        
+
         <th>DC</th>
         <th>SCHEDULE</th>
         <th>ACTUAL</th>
         <th>OU_UI</th>
-        
+
         <th>PROVIDED</th>
-       
+
     </tr>
     </thead>
     <tbody>
-        
+
             <tr>
             	<td>Most Energy</td>
                 <td>{{top[0]}}</td>
-                
+
                 <td>{{top[3]}}</td>
                 <td>{{top[4]}}</td>
                 <td>{{top[5]}}</td>
                 <td>{{top[6]}}</td>
-                
+
                 <td>{{top[8]}}</td>
-                
-                
+
+
             </tr>
             <tr>
             	<td>Least Energy</td>
                 <td>{{bottom[0]}}</td>
-                
+
                 <td>{{bottom[3]}}</td>
                 <td>{{bottom[4]}}</td>
                 <td>{{bottom[5]}}</td>
                 <td>{{bottom[6]}}</td>
-                
                 <td>{{bottom[8]}}</td>
-                
+
+
             </tr>
-        
+
     </tbody>
 </table>
+        	
 
- 
+<br>
+<br>
 
-    
+
+
+
+
+
+
+        </body>
+
+
+
+
+
+
 {% endblock content %}
